@@ -55,6 +55,7 @@
     <Compile Include="Approved\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\App.cs" />
+    <Compile Include="Source\Structs\Structs.cs" />
     <EmbeddedResource Include="Approved\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

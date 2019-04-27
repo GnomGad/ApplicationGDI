@@ -37,6 +37,7 @@
             this.addCopyrigtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.batchModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyrightTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyrightDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,7 +50,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.removeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Column1File = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1Width = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1Height = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1Text = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -87,21 +91,21 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.saveToolStripMenuItem.Text = "OpenDirectory";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // operationsToolStripMenuItem
@@ -118,21 +122,28 @@
             // addCopyrigtToolStripMenuItem
             // 
             this.addCopyrigtToolStripMenuItem.Name = "addCopyrigtToolStripMenuItem";
-            this.addCopyrigtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addCopyrigtToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.addCopyrigtToolStripMenuItem.Text = "Add copyright";
             // 
             // saveImageToolStripMenuItem
             // 
             this.saveImageToolStripMenuItem.Name = "saveImageToolStripMenuItem";
-            this.saveImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveImageToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.saveImageToolStripMenuItem.Text = "Save image";
             this.saveImageToolStripMenuItem.Click += new System.EventHandler(this.saveImageToolStripMenuItem_Click);
             // 
             // batchModeToolStripMenuItem
             // 
             this.batchModeToolStripMenuItem.Name = "batchModeToolStripMenuItem";
-            this.batchModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.batchModeToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.batchModeToolStripMenuItem.Text = "Batch mode";
+            // 
+            // removeAllToolStripMenuItem
+            // 
+            this.removeAllToolStripMenuItem.Name = "removeAllToolStripMenuItem";
+            this.removeAllToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.removeAllToolStripMenuItem.Text = "Remove all";
+            this.removeAllToolStripMenuItem.Click += new System.EventHandler(this.removeAllToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -271,19 +282,46 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1File,
+            this.Column1Width,
+            this.Column1Height,
+            this.Column1Text});
             this.tableLayoutPanel1.SetColumnSpan(this.dataGridView1, 2);
             this.dataGridView1.Location = new System.Drawing.Point(281, 3);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(956, 201);
+            this.dataGridView1.Size = new System.Drawing.Size(956, 202);
             this.dataGridView1.TabIndex = 3;
             // 
-            // removeAllToolStripMenuItem
+            // Column1File
             // 
-            this.removeAllToolStripMenuItem.Name = "removeAllToolStripMenuItem";
-            this.removeAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.removeAllToolStripMenuItem.Text = "Remove all";
-            this.removeAllToolStripMenuItem.Click += new System.EventHandler(this.removeAllToolStripMenuItem_Click);
+            this.Column1File.Frozen = true;
+            this.Column1File.HeaderText = "File";
+            this.Column1File.Name = "Column1File";
+            this.Column1File.Width = 300;
+            // 
+            // Column1Width
+            // 
+            this.Column1Width.Frozen = true;
+            this.Column1Width.HeaderText = "Width";
+            this.Column1Width.Name = "Column1Width";
+            // 
+            // Column1Height
+            // 
+            this.Column1Height.Frozen = true;
+            this.Column1Height.HeaderText = "Height";
+            this.Column1Height.Name = "Column1Height";
+            // 
+            // Column1Text
+            // 
+            this.Column1Text.Frozen = true;
+            this.Column1Text.HeaderText = "Text";
+            this.Column1Text.Name = "Column1Text";
+            this.Column1Text.Width = 415;
             // 
             // Form1
             // 
@@ -330,6 +368,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ToolStripMenuItem removeAllToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1File;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1Width;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1Height;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1Text;
     }
 }
 
