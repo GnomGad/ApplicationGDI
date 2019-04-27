@@ -77,8 +77,6 @@ namespace ApplicationGDI.Source
             }
             else
                 throw new Exception("По пути нет данных");
-
-            return null;
         }
         /// <summary>
         /// Сохранить картинку
@@ -89,7 +87,7 @@ namespace ApplicationGDI.Source
             SaveFileDialog save = new SaveFileDialog();
             save.Filter = "Image files (*.jpg,*.png)|*.jpg;*.png|Bitmap files (*.bmp)|*.bmp";
             save.ShowDialog();
-            if (save.FileName == null || save.FileName == "")
+            if (image == null || save.FileName == null || save.FileName == "")
                 return;
             image.Save(save.FileName);
         }
