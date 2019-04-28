@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
+using System.Drawing.Text;
 
 namespace ApplicationGDI.Source
 {
@@ -90,6 +91,29 @@ namespace ApplicationGDI.Source
             if (image == null || save.FileName == null || save.FileName == "")
                 return;
             image.Save(save.FileName);
+        }
+        /// <summary>
+        /// Выведет строку
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="text"></param>
+        /// <param name="font"></param>
+        /// <param name="brush"></param>
+        /// <param name="pointF"></param>
+        /// <returns></returns>
+        public string SaveImage(Image image,string text,Font font,Brush brush, PointF pointF)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "Image files (*.jpg,*.png)|*.jpg;*.png|Bitmap files (*.bmp)|*.bmp";
+            save.ShowDialog();
+            if (image == null || save.FileName == null || save.FileName == "")
+                return null;
+            Graphics g = Graphics.FromImage(image);
+            pointF.X = -1 * pointF.X / 2f + pointF.X;
+            pointF.Y = -1 * pointF.Y / 4f + pointF.Y;
+            g.DrawString(text, font,brush, pointF);
+            image.Save(save.FileName);
+            return save.FileName;
         }
 
     }

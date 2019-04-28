@@ -122,8 +122,9 @@
             // addCopyrigtToolStripMenuItem
             // 
             this.addCopyrigtToolStripMenuItem.Name = "addCopyrigtToolStripMenuItem";
-            this.addCopyrigtToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.addCopyrigtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addCopyrigtToolStripMenuItem.Text = "Add copyright";
+            this.addCopyrigtToolStripMenuItem.Click += new System.EventHandler(this.addCopyrigtToolStripMenuItem_Click);
             // 
             // saveImageToolStripMenuItem
             // 
@@ -255,6 +256,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Add copyright";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // pictureBox1
             // 

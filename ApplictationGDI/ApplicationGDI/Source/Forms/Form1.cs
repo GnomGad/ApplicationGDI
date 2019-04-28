@@ -77,8 +77,9 @@ namespace ApplicationGDI.Source.Forms
         */
         void AddPicture()
         {
-           // panel1.Controls.Clear();
-           // m_count = 0;
+
+            panel1.Controls.Clear();
+            m_count = 0;
             foreach (Image image in m_images)
             {
                 m_pictureBox = new PictureBox();
@@ -156,8 +157,33 @@ namespace ApplicationGDI.Source.Forms
                 dataGridView1.Rows[i].Cells[0].Value = bit.Paths[i];
             }
         }
-        void AddCopyRight()// написать
+        void AddCopyRight()
         {
+           PictureBox box = (PictureBox)panel1.Controls[m_selectedPictureBoxDoubleClick - 1];
+           string nameFile = 
+                m_App.SaveImage(
+                box.Image,
+                (string)dataGridView1.Rows[m_selectedPictureBoxDoubleClick - 1].Cells[3].Value, 
+                new Font(FontFamily.Families[0], 120),
+                Brushes.Red,
+                new PointF((int)dataGridView1.Rows[m_selectedPictureBoxDoubleClick - 1].Cells[1].Value,
+                (int) dataGridView1.Rows[m_selectedPictureBoxDoubleClick - 1].Cells[2].Value)
+                );
+            List<Image> images = m_App.GetPicterBox(nameFile);
+            pictureBox1.Image = images[0];
+            panel1.Controls.RemoveAt(m_selectedPictureBoxDoubleClick-1);
+            m_images.Clear();
+            int count = 0;
+           foreach(PictureBox p in panel1.Controls)
+            {
+                if (count == m_selectedPictureBoxDoubleClick - 1)
+                    m_images.Add(images[0]);
+                m_images.Add(p.Image);
+                count++;
+            }
+            AddPicture();
+            Refresh();
+
         }
         BitMapsAndName BitMapsAndName(List<Image> img,string str)
         {
@@ -192,6 +218,16 @@ namespace ApplicationGDI.Source.Forms
                 MessageBox.Show("Меня еще не написали\r\n потом я смогу удалять");
                 RemoveOneElementWithLeftPanel();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AddCopyRight();
+        }
+
+        private void addCopyrigtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddCopyRight();
         }
     }
 }
