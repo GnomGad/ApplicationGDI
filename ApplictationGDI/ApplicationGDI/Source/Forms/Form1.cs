@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using App = ApplicationGDI.Source.App;
 using BitMapsAndName = ApplicationGDI.Source.Structs.BitMapsAndName;
 using System.IO;
+
 namespace ApplicationGDI.Source.Forms
 {
     public partial class Form1 : Form
@@ -88,6 +89,7 @@ namespace ApplicationGDI.Source.Forms
                 m_pictureBox.MouseDoubleClick += PictureBox_MouseDoubleClick;
                 m_pictureBox.Click += M_pictureBox_Click;
                 m_pictureBox.Location = new Point(0, 256 * m_count);
+                m_pictureBox.Parent = panel1;
                 m_count++;
                 panel1.Controls.Add(m_pictureBox);
             }
@@ -97,7 +99,7 @@ namespace ApplicationGDI.Source.Forms
         private void M_pictureBox_Click(object sender, EventArgs e)
         {
             PictureBox pb = sender as PictureBox;
-            m_selectedPictureBoxClick = (pb.Location.Y / 256) + 1;
+            m_selectedPictureBoxClick = ((pb.Location.Y-panel1.Controls[0].Location.Y) / 256) + 1;
         }
 
         void PictureBox_MouseDoubleClick(object sender, EventArgs e)
@@ -105,7 +107,7 @@ namespace ApplicationGDI.Source.Forms
             pictureBox1.Image = null;
             PictureBox pb = sender as PictureBox;
             pictureBox1.Image = pb.Image;
-            m_selectedPictureBoxDoubleClick = (pb.Location.Y / 256)+1;
+            m_selectedPictureBoxDoubleClick = ((pb.Location.Y - panel1.Controls[0].Location.Y) / 256) + 1;
         }
         void RemoveAllPictures()
         {
@@ -117,16 +119,45 @@ namespace ApplicationGDI.Source.Forms
             m_count = 0;
             m_imagesPanel = new List<PictureBox>();
             panel1.Controls.Clear();
+            RemoveDataGridView();
+        }
+        void RemoveDataGridView()
+        {
+            dataGridView1.Rows.Clear();
+        }
+        //починить
+        void RemoveOneElementWithLeftPanel()
+        {
+            panel1.Controls.RemoveAt(m_selectedPictureBoxClick-1);
+            RefreshPanel();
+        }
+        void RefreshPanel()
+        {
+            m_count = panel1.Controls.Count;
+            Panel p = new Panel();
+            for (int i =0; i< panel1.Controls.Count;i++)
+            {
+                panel1.Controls[i].Location = new Point(0,256 * m_count);
+                m_count++;
+            }
+            panel1.Controls.Clear();
         }
         void AddElementsInDataGridView(BitMapsAndName bit)
         {
             dataGridView1.RowCount = bit.Images.Count;
             for(int i =0;i< bit.Images.Count;i++)
             {
+                dataGridView1.Rows[i].Cells[3].Value = null;
+                dataGridView1.Rows[i].Cells[0].ReadOnly = true;
+                dataGridView1.Rows[i].Cells[1].ReadOnly = true;
+                dataGridView1.Rows[i].Cells[2].ReadOnly = true;
                 dataGridView1.Rows[i].Cells[1].Value = bit.Images[i].Width;
                 dataGridView1.Rows[i].Cells[2].Value = bit.Images[i].Height;
                 dataGridView1.Rows[i].Cells[0].Value = bit.Paths[i];
             }
+        }
+        void AddCopyRight()// написать
+        {
         }
         BitMapsAndName BitMapsAndName(List<Image> img,string str)
         {
@@ -152,6 +183,15 @@ namespace ApplicationGDI.Source.Forms
         private void removeAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RemoveAllPictures();
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+           if(e.KeyData == Keys.Delete && panel1.Controls.Count >0)
+            {
+                MessageBox.Show("Меня еще не написали\r\n потом я смогу удалять");
+                RemoveOneElementWithLeftPanel();
+            }
         }
     }
 }
