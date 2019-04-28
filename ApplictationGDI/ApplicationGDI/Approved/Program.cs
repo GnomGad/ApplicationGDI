@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using App = ApplicationGDI.Source.App;
-
+using ApplicationGDI.Source.Forms;
 namespace ApplicationGDI
 {
     static class Program

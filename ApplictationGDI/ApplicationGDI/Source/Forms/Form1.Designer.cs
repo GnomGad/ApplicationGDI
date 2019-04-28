@@ -1,4 +1,4 @@
-﻿namespace ApplicationGDI
+﻿namespace ApplicationGDI.Source.Forms
 {
     partial class Form1
     {

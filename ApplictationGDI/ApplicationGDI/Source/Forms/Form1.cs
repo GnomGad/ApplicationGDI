@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using App = ApplicationGDI.Source.App;
 using BitMapsAndName = ApplicationGDI.Source.Structs.BitMapsAndName;
 using System.IO;
-namespace ApplicationGDI
+namespace ApplicationGDI.Source.Forms
 {
     public partial class Form1 : Form
     {
