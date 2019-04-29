@@ -9,6 +9,7 @@ namespace ApplicationGDI
 {
     static class Program
     {
+        public const string PathImages = @"..\..\Source\Images";
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
@@ -19,7 +20,7 @@ namespace ApplicationGDI
             //app.GetPicterBox(app.GetPathFile());
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new CardsGame());
         }
     }
 }
