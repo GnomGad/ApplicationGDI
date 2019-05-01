@@ -51,6 +51,9 @@
             this.Name = "CardsGame";
             this.Text = "CardsGame";
             this.ResizeEnd += new System.EventHandler(this.CardsGame_ResizeEnd);
+            this.Click += new System.EventHandler(this.CardsGame_Click);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CardsGame_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CardsGame_MouseUp);
             this.Resize += new System.EventHandler(this.CardsGame_Resize);
             this.ResumeLayout(false);
 

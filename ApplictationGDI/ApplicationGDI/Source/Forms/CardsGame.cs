@@ -18,19 +18,24 @@ namespace ApplicationGDI.Source.Forms
         int m_decks;
         Graphics m_gc;
         Bitmap m_talon;
+        Card newCard;
+
+        bool k1 = false;
         public CardsGame()
         {
             InitializeComponent();
             SetBasic();
+            newCard = new Card(m_bitmaps[0], new Size(120, 200), new Point(500, 500));
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //DoubleBuffered = true;
+            DoubleBuffered = true;
             SetGradient();
+
             TestDraw2();
             TestDraw();
-
+            TestDraw3();
         }
         void SetBasic()
         {
@@ -38,6 +43,7 @@ namespace ApplicationGDI.Source.Forms
             Setm_bitmaps();
             Setm_talon();
             Setm_Decks();
+            
         }
         void Setm_gc()
         {
@@ -88,6 +94,11 @@ namespace ApplicationGDI.Source.Forms
             
         }
 
+        void TestDraw3()
+        {
+            
+        }
+
         private void CardsGame_Resize(object sender, EventArgs e)
         {
             Setm_gc();
@@ -103,5 +114,41 @@ namespace ApplicationGDI.Source.Forms
             TestDraw2();
             TestDraw();
         }
+
+
+        // --------------------------------все фигня, над чинить---------------------------------------
+
+        private void CardsGame_Click(object sender, EventArgs e)
+        {
+
+            MouseEventArgs k = (MouseEventArgs)e;
+            if (k.X <= 200 && k.Y <= 200)
+                k1 = true;
+            
+        }
+
+        private void CardsGame_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (k1 == true)
+            {
+                newCard.Move(new Point(e.X, e.Y));
+                newCard.Draw(m_gc);
+                
+            }
+            k1 = !k1;
+        }
+
+        private void CardsGame_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (k1 == true)
+            {
+                button1_Click(sender, new EventArgs());
+               
+                newCard.Move(new Point(e.X, e.Y));
+                newCard.Draw(m_gc);
+            }
+        }
+
+        // --------------------------------весь отмеченный блок---------------------------------------
     }
 }

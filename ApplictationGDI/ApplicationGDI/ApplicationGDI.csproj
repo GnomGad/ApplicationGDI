@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Source\CardsGame\AppCardsGame.cs" />
+    <Compile Include="Source\CardsGame\Card.cs" />
     <Compile Include="Source\Forms\CardsGame.cs">
       <SubType>Form</SubType>
     </Compile>
