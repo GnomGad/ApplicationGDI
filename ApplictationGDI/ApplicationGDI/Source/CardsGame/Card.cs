@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 namespace ApplicationGDI.Source.CardsGame
 {
     class Card
@@ -21,6 +23,7 @@ namespace ApplicationGDI.Source.CardsGame
         public Point New { get; set; }
         public bool IsTalon { get; set; }
         public bool IsActive { get; set; }
+        public int Rotate { get; set; }
 
         public Card(Bitmap Image,Size SizeImage,Point Previous)
         {
@@ -30,6 +33,7 @@ namespace ApplicationGDI.Source.CardsGame
             New = Previous;
             IsTalon = true;
             IsActive = false;
+            Rotate = 0;
         }
 
         public void Move(Point New)
@@ -37,12 +41,12 @@ namespace ApplicationGDI.Source.CardsGame
             Previous = this.New;
             this.New = New;
         }
-        public void Draw(Graphics gc)
+        public void Draw(Graphics gc,Bitmap b)
         {
-            gc.DrawImage(Image, New.X, New.Y, SizeImage.Width,SizeImage.Height);
-            
-            
-            
+            Graphics g = Graphics.FromImage(b);
+            g.DrawImage(Image, New.X, New.Y, SizeImage.Width,SizeImage.Height);
+            gc.DrawImage(b,0,0);
+           
         }
 
         
