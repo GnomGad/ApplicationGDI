@@ -115,6 +115,19 @@ namespace ApplicationGDI.Source
             image.Save(save.FileName);
             return save.FileName;
         }
+        public string batch_SaveImage(string path,Image image, string text, Font font, Brush brush, PointF pointF)
+        {
+            if (image == null || path == null || path == "")
+                return null;
+            Graphics g = Graphics.FromImage(image);
+            pointF.X = -1 * pointF.X / 2f + pointF.X;
+            pointF.Y = -1 * pointF.Y / 4f + pointF.Y;
+            g.DrawString(text, font, brush, pointF);
+            if (File.Exists(path))
+                File.Delete(path);
+            image.Save(path);
+            return path;
+        }
 
     }
 }

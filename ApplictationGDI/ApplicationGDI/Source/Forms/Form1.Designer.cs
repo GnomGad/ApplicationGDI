@@ -129,20 +129,21 @@
             // saveImageToolStripMenuItem
             // 
             this.saveImageToolStripMenuItem.Name = "saveImageToolStripMenuItem";
-            this.saveImageToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.saveImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveImageToolStripMenuItem.Text = "Save image";
             this.saveImageToolStripMenuItem.Click += new System.EventHandler(this.saveImageToolStripMenuItem_Click);
             // 
             // batchModeToolStripMenuItem
             // 
             this.batchModeToolStripMenuItem.Name = "batchModeToolStripMenuItem";
-            this.batchModeToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.batchModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.batchModeToolStripMenuItem.Text = "Batch mode";
+            this.batchModeToolStripMenuItem.Click += new System.EventHandler(this.batchModeToolStripMenuItem_Click);
             // 
             // removeAllToolStripMenuItem
             // 
             this.removeAllToolStripMenuItem.Name = "removeAllToolStripMenuItem";
-            this.removeAllToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.removeAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.removeAllToolStripMenuItem.Text = "Remove all";
             this.removeAllToolStripMenuItem.Click += new System.EventHandler(this.removeAllToolStripMenuItem_Click);
             // 
@@ -160,12 +161,14 @@
             this.copyrightTextToolStripMenuItem.Name = "copyrightTextToolStripMenuItem";
             this.copyrightTextToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.copyrightTextToolStripMenuItem.Text = "Copyright text";
+            this.copyrightTextToolStripMenuItem.Click += new System.EventHandler(this.copyrightTextToolStripMenuItem_Click);
             // 
             // copyrightDirectoryToolStripMenuItem
             // 
             this.copyrightDirectoryToolStripMenuItem.Name = "copyrightDirectoryToolStripMenuItem";
             this.copyrightDirectoryToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.copyrightDirectoryToolStripMenuItem.Text = "Copyright directory";
+            this.copyrightDirectoryToolStripMenuItem.Click += new System.EventHandler(this.copyrightDirectoryToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -227,6 +230,7 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "Batch mode";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 

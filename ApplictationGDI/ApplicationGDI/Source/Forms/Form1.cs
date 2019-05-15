@@ -22,6 +22,9 @@ namespace ApplicationGDI.Source.Forms
         private int m_count;
         private int m_selectedPictureBoxClick = default(int);
         private int m_selectedPictureBoxDoubleClick = default(int);
+        private bool m_batch = false;
+        private string m_batchDirectory = "";
+        private string m_privateCopyRight = "Привет";
 
         public Form1()
         {
@@ -225,6 +228,57 @@ namespace ApplicationGDI.Source.Forms
             else
                 return new BitMapsAndName(img, str);
         }
+
+        void BatchModeTrue()
+        {
+            button1.Click -= button1_Click;
+            button1.Click += newButton1_Click;
+        }
+        void BatchModeFalse()
+        {
+            
+            button1.Click -= newButton1_Click;
+            button1.Click += button1_Click;
+        }
+        void SelectBatchMode()
+        {
+            m_batch = !m_batch;
+            if (m_batch)
+                BatchModeTrue();
+            else
+                BatchModeFalse();
+        }
+
+        void newButton1_Click(object sender, EventArgs e)
+        {
+            PictureBox box = (PictureBox)panel1.Controls[m_selectedPictureBoxDoubleClick - 1];
+            string nameFile =
+                 m_App.batch_SaveImage(
+                 m_batchDirectory+"\\"+dataGridView1.Rows[m_selectedPictureBoxDoubleClick-1].Cells[0].Value,
+                 box.Image,
+                 m_privateCopyRight,
+                 new Font(FontFamily.Families[0], 120),
+                 Brushes.Red,
+                 new PointF((int)dataGridView1.Rows[m_selectedPictureBoxDoubleClick - 1].Cells[1].Value,
+                 (int)dataGridView1.Rows[m_selectedPictureBoxDoubleClick - 1].Cells[2].Value)
+                 );
+            dataGridView1.Rows[m_selectedPictureBoxDoubleClick - 1].Cells[3].Value = m_privateCopyRight;
+            List<Image> images = m_App.GetPicterBox(nameFile);
+            pictureBox1.Image = images[0];
+            List<PictureBox> pb = new List<PictureBox>();
+            for (int i = 0; i < panel1.Controls.Count; i++)
+            {
+                pb.Add((PictureBox)panel1.Controls[i]);
+            }
+            pb[m_selectedPictureBoxDoubleClick - 1].BackColor = Color.Green;
+
+            for (int i = 0; i < pb.Count; i++)
+            {
+                panel1.Controls.Add(pb[i]);
+            }
+            m_images.Clear();
+        }
+
         //Блок сохранений
         private void saveImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -258,6 +312,26 @@ namespace ApplicationGDI.Source.Forms
         private void addCopyrigtToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddCopyRight();
+        }
+
+        private void batchModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectBatchMode();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            SelectBatchMode();
+        }
+
+        private void copyrightDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            App j = new App();
+            m_batchDirectory= j.GetPathDirectory();
+        }
+
+        private void copyrightTextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
         }
     }
 }
