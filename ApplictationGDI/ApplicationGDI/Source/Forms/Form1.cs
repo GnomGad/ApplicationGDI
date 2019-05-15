@@ -129,8 +129,21 @@ namespace ApplicationGDI.Source.Forms
         //починить
         void RemoveOneElementWithLeftPanel()
         {
-            panel1.Controls.RemoveAt(m_selectedPictureBoxClick-1);
-            RefreshPanel();
+            
+            List<PictureBox> pb = new List<PictureBox>();
+            for (int i = 0; i < panel1.Controls.Count; i++)
+            {
+                if (i == m_selectedPictureBoxClick - 1)
+                    continue;
+                pb.Add((PictureBox)panel1.Controls[i]);
+            }
+            m_count = 0;
+            panel1.Controls.Clear();
+            for (int i = 0; i < pb.Count; i++)
+            {
+                pb[i].Location = new Point(0, 256 * i);
+                panel1.Controls.Add(pb[i]);
+            }
         }
         void RefreshPanel()
         {
@@ -157,6 +170,21 @@ namespace ApplicationGDI.Source.Forms
                 dataGridView1.Rows[i].Cells[0].Value = bit.Paths[i];
             }
         }
+        void DeleteElementInDataGridView(int index)
+        {
+            List<DataGridViewRow> zek = new List<DataGridViewRow>();
+            for(int i =0;i< dataGridView1.RowCount;i++)
+            {
+                if(i!=index)
+                zek.Add(dataGridView1.Rows[i]);
+            }
+            RemoveDataGridView();
+            for (int i = 0; i < zek.Count; i++)
+            {
+                    dataGridView1.Rows.Add(zek[i]);
+            }
+            
+        }
         void AddCopyRight()
         {
            PictureBox box = (PictureBox)panel1.Controls[m_selectedPictureBoxDoubleClick - 1];
@@ -171,18 +199,19 @@ namespace ApplicationGDI.Source.Forms
                 );
             List<Image> images = m_App.GetPicterBox(nameFile);
             pictureBox1.Image = images[0];
-            panel1.Controls.RemoveAt(m_selectedPictureBoxDoubleClick-1);
-            m_images.Clear();
-            int count = 0;
-           foreach(PictureBox p in panel1.Controls)
+            List<PictureBox> pb = new List<PictureBox>();
+            for (int i =0; i< panel1.Controls.Count;i++)
             {
-                if (count == m_selectedPictureBoxDoubleClick - 1)
-                    m_images.Add(images[0]);
-                m_images.Add(p.Image);
-                count++;
+                pb.Add((PictureBox)panel1.Controls[i]);
             }
-            AddPicture();
-            Refresh();
+           pb[m_selectedPictureBoxDoubleClick-1].BackColor = Color.Green;
+                
+            for (int i = 0; i < pb.Count;i++)
+            {
+                panel1.Controls.Add(pb[i]);
+            }
+            m_images.Clear();
+
 
         }
         BitMapsAndName BitMapsAndName(List<Image> img,string str)
@@ -215,8 +244,9 @@ namespace ApplicationGDI.Source.Forms
         {
            if(e.KeyData == Keys.Delete && panel1.Controls.Count >0)
             {
-                MessageBox.Show("Меня еще не написали\r\n потом я смогу удалять");
+                //MessageBox.Show("Меня еще не написали\r\n потом я смогу удалять");
                 RemoveOneElementWithLeftPanel();
+                DeleteElementInDataGridView(m_selectedPictureBoxClick-1);
             }
         }
 

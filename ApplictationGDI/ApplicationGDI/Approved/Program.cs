@@ -20,7 +20,7 @@ namespace ApplicationGDI
             //app.GetPicterBox(app.GetPathFile());
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CardsGame());
+            Application.Run(new Form1());
         }
     }
 }
